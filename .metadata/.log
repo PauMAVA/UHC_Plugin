@@ -1,0 +1,112 @@
+!SESSION 2019-01-07 18:41:55.724 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=1.8.0_191
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -data C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.ui 2 0 2019-01-07 18:42:09.449
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2019-01-07 18:42:09.449
+!MESSAGE Cannot bind to an undefined command: plug-in='com.genuitec.eclipse.theming.ui', id='com.genuitec.myeclipse.help.darktheme.commandid'
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2019-01-07 18:42:14.218
+!MESSAGE A DevStyle Theme is being activated on this workspace; preparing colors and configuration
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2019-01-07 18:42:14.498
+!MESSAGE DevStyle has archived current color configurations to alternate preferences - will be restored when switching out of the DevStyle Theme
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-01-07 18:42:56.500
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Pau'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2019-01-07 18:45:25.940
+!MESSAGE 
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-01-07 18:45:35.610
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-01-07 18:45:35.612
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-01-07 18:45:35.612
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-01-07 18:45:35.612
+!MESSAGE C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-01-07 18:45:45.887
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-01-07 18:45:45.887
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-01-07 18:45:45.887
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-01-07 18:45:45.887
+!MESSAGE C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-01-07 18:46:52.571
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-01-07 18:46:52.571
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-01-07 18:46:52.572
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-01-07 18:46:52.572
+!MESSAGE C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin overlaps the workspace location: C:\Users\Pau\Desktop\FEINA\PLUGIN\UHCT1\UHC_Plugin
