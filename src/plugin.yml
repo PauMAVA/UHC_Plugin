@@ -1,0 +1,19 @@
+name: UhcPlugin
+version: pre-alpha - 0.1
+main: org.uhc.startup.uhcCore
+description: UHC Plugin Testing Pre-Release 
+api-version: 1.13
+# Release: pre-alpha - 0.1 
+# Changelog: 
+# 	- Added /uhcstart command with Integer arg time. Basic error handler + countdown with custom color and sounds.
+commands:
+  uhcstart:
+    description: Executes Uhc Init Sequence
+  registerteam: 
+    description: Create Teams before Starting the Uhc
+  getteam:
+    description: Retrieve basic data from Teams in any moment
+  music:
+    description: Play UHC main Anthem (by Sinesita)
+  musicfinal:
+    description: Play final music (by Sinesita)
