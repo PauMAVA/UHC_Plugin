@@ -41,7 +41,8 @@ public class uhcStartConfig implements Listener {
 		Bukkit.broadcastMessage(ChatColor.GREEN + "Success!");
   
 		Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up gamerules...");
-		boolean gamerulesAreDone = setGamerules();
+		World world = Bukkit.getWorld("world");
+		boolean gamerulesAreDone = setGamerules(world);
 		stateCheck(gamerulesAreDone, "Set Gamerules");
   
 		setPlayerStats();
@@ -65,16 +66,19 @@ public class uhcStartConfig implements Listener {
 		}
 	}
 
-	public boolean setGamerules() {
+	public boolean setGamerules(World world) {
 		Bukkit.getServer().setDefaultGameMode(GameMode.SURVIVAL);
-		World world = Bukkit.getWorld("world");
-		world.setGameRule(naturalRegeneration, false);
+		if (world.getGameRuleDefault(GameRule.NATURAL_REGENERATION) != false) {
+			world.setGameRule(naturalRegeneration, false);
+		} 
 		world.setGameRule(announceAdvancements, false);
 		world.setDifficulty(difficulty);
 		world.setTime(0);
 		return true;	
 	}
-
+	
+	
+	
 	
 	public boolean setPlayerStats() {
 		for(Player everyone: Bukkit.getOnlinePlayers()) {
