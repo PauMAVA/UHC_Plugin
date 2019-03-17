@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
@@ -12,7 +14,10 @@ import org.bukkit.event.Listener;
 
 
 public class uhcStartConfig implements Listener {
-    //CONSTRUCTOR-----------------------------------
+	public static final Difficulty difficulty = Difficulty.HARD;
+	public static final GameRule<Boolean> naturalRegeneration = GameRule.NATURAL_REGENERATION;
+	public static final GameRule<Boolean> announceAdvancements = GameRule.ANNOUNCE_ADVANCEMENTS;
+	//CONSTRUCTOR-----------------------------------
 	uhcStartCmd directplugin;
 	public uhcStartConfig(uhcStartCmd passedPlugin){
 		this.directplugin = passedPlugin;
@@ -27,45 +32,46 @@ public class uhcStartConfig implements Listener {
 
     //CONSTRUCTOR-----------------------------------
 
-public void module() {
-  Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up world border...");
-  boolean borderIsDone = setBorder();
-  stateCheck(borderIsDone, "Set World Border");
+	public void module() {
+		Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up world border...");
+		boolean borderIsDone = setBorder();
+		stateCheck(borderIsDone, "Set World Border");
   
-  Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up timer scoreboard...");
-  Bukkit.broadcastMessage(ChatColor.GREEN + "Success!");
+		Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up timer scoreboard...");
+		Bukkit.broadcastMessage(ChatColor.GREEN + "Success!");
   
-  Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up gamerules...");
-  boolean gamerulesAreDone = setGamerules();
-  stateCheck(gamerulesAreDone, "Set Gamerules");
+		Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up gamerules...");
+		boolean gamerulesAreDone = setGamerules();
+		stateCheck(gamerulesAreDone, "Set Gamerules");
   
-  setPlayerStats();
-  tpPlayers();
+		setPlayerStats();
+		tpPlayers();
   
-  return;
-}
+		return;
+	}
 
 
-public boolean setBorder() {
- World world = Bukkit.getWorld("world");
- WorldBorder border = world.getWorldBorder();
- border.setCenter(0.0, 0.0);
- border.setSize(2500.0);
- if (border.getSize() == 2500.0) {
-	 return true;
- }
+	public boolean setBorder() {
+		World world = Bukkit.getWorld("world");
+		WorldBorder border = world.getWorldBorder();
+		border.setCenter(0.0, 0.0);
+		border.setSize(2500.0);
+		if (border.getSize() == 2500.0) {
+			return true;
+		}
  
- else {
-	return false; 
- }
-}
+		else {
+			return false; 
+		}
+	}
 
 	public boolean setGamerules() {
 		Bukkit.getServer().setDefaultGameMode(GameMode.SURVIVAL);
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule naturalRegeneration false");
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule announceAdvancements false");
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "difficulty hard");
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "time set day");
+		World world = Bukkit.getWorld("world");
+		world.setGameRule(naturalRegeneration, false);
+		world.setGameRule(announceAdvancements, false);
+		world.setDifficulty(difficulty);
+		world.setTime(0);
 		return true;	
 	}
 
@@ -105,16 +111,16 @@ public boolean setBorder() {
 		
 		return true;
 	}
-public void stateCheck(boolean valueChecker, String operation) {
-  if (valueChecker == false) {
-    Bukkit.broadcastMessage(ChatColor.RED + "Failed do perform operation: " + operation);
-    return;
-  }
-  else {
-    Bukkit.broadcastMessage(ChatColor.GREEN + "Success!");
-    return;
-  }
+	public void stateCheck(boolean valueChecker, String operation) {
+		if (valueChecker == false) {
+			Bukkit.broadcastMessage(ChatColor.RED + "Failed do perform operation: " + operation);
+			return;
+		}
+		else {
+			Bukkit.broadcastMessage(ChatColor.GREEN + "Success!");
+			return;
+		}
   
-}
+	}
 
 }
