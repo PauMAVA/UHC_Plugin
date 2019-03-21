@@ -11,6 +11,8 @@ import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 
 public class uhcStartConfig implements Listener {
@@ -92,27 +94,14 @@ public class uhcStartConfig implements Listener {
 	
 	public boolean tpPlayers() {
 		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "effect give @a minecraft:slow_falling 40");
+		for (Player everyone: Bukkit.getServer().getOnlinePlayers()) {
+			everyone.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 40, 1));
+		}
 		List<?> team1 = uhcCore.getInstance().getConfig().getList("teams.Al-Qaparro");
 		String[] team1Array = team1.toArray(new String[0]);
-		List<?> team2 = uhcCore.getInstance().getConfig().getList("teams.SquaredSlaves");
-		String[] team2Array = team2.toArray(new String[0]);
-		List<?> team3 = uhcCore.getInstance().getConfig().getList("teams.VerduresSalades");
-		String[] team3Array = team3.toArray(new String[0]);
-		List<?> team4 = uhcCore.getInstance().getConfig().getList("teams.DieKleineburste");
-		String[] team4Array = team4.toArray(new String[0]);
 		
 		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team1Array[0] + " 1230 150 1230");
 		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team1Array[1] + " 1230 150 1230");
-		
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team2Array[0] + " -1230 150 1230");
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team2Array[1] + " -1230 150 1230");
-		
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team3Array[0] + " 1230 150 -1230");
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team3Array[1] + " 1230 150 -1230");
-		
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team4Array[0] + " -1230 150 -1230");
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team4Array[1] + " -1230 150 -1230");
-		
 		return true;
 	}
 	public void stateCheck(boolean valueChecker, String operation) {
