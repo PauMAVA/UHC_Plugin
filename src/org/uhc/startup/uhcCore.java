@@ -3,14 +3,11 @@ package org.uhc.startup;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-//import org.bukkit.entity.Entity;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-//import org.bukkit.event.entity.EntityDamageEvent;
-//import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.EntityPortalEnterEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Objective;
@@ -22,6 +19,8 @@ public class uhcCore extends JavaPlugin implements Listener
 	customCraftings customCraftings = new customCraftings(this);
 	//lifeScoreboard lifeScoreboard = new lifeScoreboard(this);
 	scoreboardCounterModule scoreboardCounterModule = new scoreboardCounterModule(this);
+	uhcStartConfig uhcStartConfig = new uhcStartConfig(this);
+	onPlayerDeathModule onPlayerDeathModule  = new onPlayerDeathModule(this);
 	public static uhcCore instance;
 	public Objective obj;
 	public Scoreboard timerBoard = null;
@@ -64,26 +63,6 @@ public class uhcCore extends JavaPlugin implements Listener
 		return instance;
 	}
 
-	
-	
-
-	@EventHandler
-	public Location getDeathLocation(PlayerDeathEvent event) {
-		Player player = event.getEntity();
-		String person = player.getName();
-        double x = player.getLocation().getX();
-        double y = player.getLocation().getY();
-        double z = player.getLocation().getZ();
-        int xInt = (int) x;
-        int yInt = (int) y;
-        int skullHeigth = yInt + 1;
-        int zInt = (int) z;
-        Location location = player.getLocation();
-        Bukkit.getServer().dispatchCommand(getServer().getConsoleSender(), "setblock " + xInt + " " + skullHeigth + " " + zInt + " minecraft:player_head{Owner:{Name:\"" + person + "\"}} replace");
-        Bukkit.getServer().getWorld("world").getBlockAt(xInt,yInt,zInt).setType(Material.BLACK_STAINED_GLASS_PANE);
-
-        return location;
-	}
 
 	//@EventHandler
 	//public void onPlayerDmg(EntityDamageEvent dmgEvent) {
@@ -119,5 +98,21 @@ public class uhcCore extends JavaPlugin implements Listener
 		
 	//}
 	
+	@EventHandler
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		onPlayerDeathModule.setDeadGamemode(event);
+		onPlayerDeathModule.setSkull(event);
+	}
+	
+	
+	@EventHandler
+	public void outPortal(EntityPortalEnterEvent event) {
+		if (event.getEntity() instanceof Player)  {
+			Player player = (Player)event.getEntity();
+			World world = player.getWorld();
+			uhcStartConfig.setGamerules(world);
+		}
+		return;
+	}
+	
 }
-
