@@ -1,6 +1,8 @@
 package org.uhc.startup;
 
-import java.util.HashMap;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -24,12 +26,17 @@ public class randTpGenerator {
 	
 	World world = Bukkit.getWorld("world");
 	WorldBorder border = world.getWorldBorder();
-	private final int staticCoordinate =  (int) border.getSize();
-	private int constant = 0;
+	private final int staticCoordinate =  (int) border.getSize() / 2;
 	
 	private static int getRandomNumberFromArray(int[] array) {
 		int number = new Random().nextInt(array.length);
 		return array[number];
+	}
+	
+	private static int getRandomIntInRange(int min, int max) {
+		Random random = new Random();
+		int number = random.nextInt((max - min) + 1) + min;	
+		return number;
 	}
 	
 	//Scramble border sizes order of assignation
@@ -44,29 +51,53 @@ public class randTpGenerator {
 			numArray = ArrayUtils.removeElement(numArray, randomValue);
 			i++;
 		}
-		Bukkit.broadcastMessage(scrambledSidesArray[0] + ", " + scrambledSidesArray[1] + ", " + scrambledSidesArray[2] + ", " + scrambledSidesArray[3]);	
 		return scrambledSidesArray;
 	} 
 	
-	public void tpPlayers(String[] sides) {
+	//Non multiple of 4 team number assignation not developed yet!
+	public String[][] setTeamSide(String[] sides) {
 		Set<String> teamNames = uhcCore.getInstance().getConfig().getConfigurationSection("teams").getKeys(false);
 		String[] teams = teamNames.toArray(new String[0]);
+		//int teamsPerSide = teams.length / 4;
 		int exceedingTeams = teams.length % 4;
-		HashMap<String, String> teamSide = new HashMap<String, String>();
-		switch(constant == 0) {
-			case exceedingTeams == 0:
-				for (int i = 0; i != teams.length; i++) {
-					teamSide.put(teams[i], sides[i]);
-				}
-				break;
-			case exceedingTeams == 1:
-				
-				break;
-			case exceedingTeams == 2:
-				break;
-			case exceedingTeams == 3:
-				break;
+		String[][] teamSide = new String[2][4];
+		if (exceedingTeams == 0) {
+			for (int i = 0; i <= teams.length - 1; i++) {
+				teamSide[0][i] = teams[i];
+				teamSide[1][i] = sides[i];
+			}
+		} 
+		return teamSide;
+	}
+	
+	public void generateRandTpCoords(String[][] teamSide) {
+		int randomTpCoord = getRandomIntInRange(staticCoordinate * -1, staticCoordinate);
+		int xCoord = 0, zCoord = 0;
+		for(int i = 0; i < 4; i++) {
+			String teamName = teamSide[0][i];
+			String side = teamSide[1][i];
+			if (side == "north") {
+				xCoord = randomTpCoord;
+				zCoord = staticCoordinate - 1;
+			} else if (side == "south") {
+				xCoord = randomTpCoord;
+				zCoord = (staticCoordinate * -1) + 1;
+			} else if (side == "east") {
+				xCoord = (staticCoordinate * -1) + 1;
+				zCoord = randomTpCoord;
+			} else if (side == "west") {
+				xCoord = staticCoordinate - 1;
+				zCoord = randomTpCoord;
+			}
+			List<String> list = new ArrayList<String>();
+			list = uhcCore.getInstance().getConfig().getStringList("teams." + teamName);
+			String[] players = list.toArray(new String[0]);
+			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + players[0] + " " + xCoord + " 150 " + zCoord);
+			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + players[1] + " " + xCoord + " 150 " + zCoord);
 		}
+		
+		
 		return;
 	}
+	
 }

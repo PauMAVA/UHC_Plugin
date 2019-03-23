@@ -58,7 +58,7 @@ public class uhcStartConfig implements Listener {
 		WorldBorder border = world.getWorldBorder();
 		border.setCenter(0.0, 0.0);
 		int i = 0;
-		for (String key: uhcCore.getInstance().getConfig().getKeys(true)) {
+		for (@SuppressWarnings("unused") String key: uhcCore.getInstance().getConfig().getKeys(true)) {
 			i++;
 		}
 		i--; //Remove teams: tag from count!
@@ -110,7 +110,8 @@ public class uhcStartConfig implements Listener {
 			everyone.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 40, 1));
 		}
 		String[] passArray = randTpGenerator.setBorderNumeration();
-		randTpGenerator.tpPlayers(passArray);
+		String[][] passHashMap = randTpGenerator.setTeamSide(passArray);
+		randTpGenerator.generateRandTpCoords(passHashMap);
 		return true;
 	}
 	public void stateCheck(boolean valueChecker, String operation) {

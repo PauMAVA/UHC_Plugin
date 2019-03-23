@@ -32,7 +32,7 @@ public class scoreboardCounterModule implements Listener {
 	Scoreboard timerBoard = manager.getNewScoreboard();
 	Objective episodeObjective = timerBoard.registerNewObjective("episode", "dummy");
 public void module() {
-	episodeObjective.setDisplayName(ChatColor.BLUE + "UHC T1" + ChatColor.RED + " | " + ChatColor.GREEN + "preAlpha 0.6");
+	episodeObjective.setDisplayName(ChatColor.BLUE + "UHC T2" + ChatColor.RED + " | " + ChatColor.GREEN + "Alpha 0.1");
 	episodeObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
 	scoreboardCounterTask.runTaskTimerAsynchronously(uhcCore.getInstance(), 0L, 20L);
 	
