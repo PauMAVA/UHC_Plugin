@@ -1,7 +1,5 @@
 package org.uhc.startup;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
@@ -19,6 +17,7 @@ public class uhcStartConfig implements Listener {
 	public static final Difficulty difficulty = Difficulty.HARD;
 	public static final GameRule<Boolean> naturalRegeneration = GameRule.NATURAL_REGENERATION;
 	public static final GameRule<Boolean> announceAdvancements = GameRule.ANNOUNCE_ADVANCEMENTS;
+	randTpGenerator randTpGenerator = new randTpGenerator(this);
 	//CONSTRUCTOR-----------------------------------
 	uhcStartCmd directplugin;
 	public uhcStartConfig(uhcStartCmd passedPlugin){
@@ -33,7 +32,7 @@ public class uhcStartConfig implements Listener {
 
 
     //CONSTRUCTOR-----------------------------------
-
+	
 	public void module() {
 		Bukkit.broadcastMessage(ChatColor.BLUE + "Setting up world border...");
 		boolean borderIsDone = setBorder();
@@ -58,8 +57,21 @@ public class uhcStartConfig implements Listener {
 		World world = Bukkit.getWorld("world");
 		WorldBorder border = world.getWorldBorder();
 		border.setCenter(0.0, 0.0);
-		border.setSize(2500.0);
-		if (border.getSize() == 2500.0) {
+		int i = 0;
+		for (String key: uhcCore.getInstance().getConfig().getKeys(true)) {
+			i++;
+		}
+		i--; //Remove teams: tag from count!
+		double borderSize = 2500.0;
+		if (i >= 5) {
+			while (i != 4) {
+				borderSize = borderSize + 200.0;
+				i--;
+			}
+		}
+		border.setSize(borderSize);
+		Bukkit.broadcastMessage("Border diameter: " + borderSize);
+		if (border.getSize() == borderSize) {
 			return true;
 		}
  
@@ -97,16 +109,13 @@ public class uhcStartConfig implements Listener {
 		for (Player everyone: Bukkit.getServer().getOnlinePlayers()) {
 			everyone.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 40, 1));
 		}
-		List<?> team1 = uhcCore.getInstance().getConfig().getList("teams.Al-Qaparro");
-		String[] team1Array = team1.toArray(new String[0]);
-		
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team1Array[0] + " 1230 150 1230");
-		Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + team1Array[1] + " 1230 150 1230");
+		String[] passArray = randTpGenerator.setBorderNumeration();
+		randTpGenerator.tpPlayers(passArray);
 		return true;
 	}
 	public void stateCheck(boolean valueChecker, String operation) {
 		if (valueChecker == false) {
-			Bukkit.broadcastMessage(ChatColor.RED + "Failed do perform operation: " + operation);
+			Bukkit.broadcastMessage(ChatColor.RED + "Failed to perform operation: " + operation);
 			return;
 		}
 		else {
