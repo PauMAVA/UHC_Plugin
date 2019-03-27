@@ -34,15 +34,15 @@ public class scoreboardCounterTask extends BukkitRunnable {
 			seconds = 59;
 			minutes = 24;
 			episode = episode + 1;
-			Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T1] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN + "Episode " + ChatColor.GOLD + episode + ChatColor.GREEN + " has began!"));
+			Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T2] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN + "Episode " + ChatColor.GOLD + episode + ChatColor.GREEN + " has began!"));
 			if(episode == 9) {
-				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T1] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN + "At the end of this episode you must be at 0,0!"));
-				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T1] " + ChatColor.DARK_GRAY + ">> " + ChatColor.RED + "World border will stretch to 750 blocks (radius) throughout the episode!"));
+				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T2] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN + "At the end of this episode you must be at 0,0!"));
+				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T2] " + ChatColor.DARK_GRAY + ">> " + ChatColor.RED + "World border will stretch to 750 blocks (radius) throughout the episode!"));
 				setBorderEp9();
 			}
 			if(episode == 10) {
-				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T1] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN +"Time to fight! GL :)"));
-				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T1] " + ChatColor.DARK_GRAY + ">> " + ChatColor.RED + "World border will stretch to 150 blocks (radius) throughout the episode!"));
+				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T2] " + ChatColor.DARK_GRAY + ">> " + ChatColor.GREEN +"Time to fight! GL :)"));
+				Bukkit.broadcastMessage(ChatColor.BOLD + (ChatColor.DARK_AQUA + "[UHC T2] " + ChatColor.DARK_GRAY + ">> " + ChatColor.RED + "World border will stretch to 150 blocks (radius) throughout the episode!"));
 				setBorderEp10();
 				
 			}
@@ -61,7 +61,7 @@ public class scoreboardCounterTask extends BukkitRunnable {
 			Scoreboard timerBoard = manager.getNewScoreboard();
 			Objective episodeObjective = timerBoard.registerNewObjective("episode", "dummy");
 			Score episodes_left = episodeObjective.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Time: " + minutes +  " : " + seconds + " || Episode: "));
-			episodeObjective.setDisplayName(ChatColor.BOLD + (ChatColor.BLUE + "UHC T1" + ChatColor.RED + " | " + ChatColor.GREEN + "preAlpha 0.7"));
+			episodeObjective.setDisplayName(ChatColor.BOLD + (ChatColor.BLUE + "UHC T2" + ChatColor.RED + " | " + ChatColor.GREEN + "Alpha 0.1"));
 			episodes_left.setScore(episode);
 			episodeObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
 			for (Player p: Bukkit.getOnlinePlayers()) {

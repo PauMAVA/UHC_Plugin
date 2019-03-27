@@ -78,15 +78,15 @@ public class randTpGenerator {
 			String side = teamSide[1][i];
 			if (side == "north") {
 				xCoord = randomTpCoord;
-				zCoord = staticCoordinate - 1;
+				zCoord = staticCoordinate - 10;
 			} else if (side == "south") {
 				xCoord = randomTpCoord;
-				zCoord = (staticCoordinate * -1) + 1;
+				zCoord = (staticCoordinate * -1) + 10;
 			} else if (side == "east") {
-				xCoord = (staticCoordinate * -1) + 1;
+				xCoord = (staticCoordinate * -1) + 10;
 				zCoord = randomTpCoord;
 			} else if (side == "west") {
-				xCoord = staticCoordinate - 1;
+				xCoord = staticCoordinate - 10;
 				zCoord = randomTpCoord;
 			}
 			List<String> list = new ArrayList<String>();
@@ -95,6 +95,17 @@ public class randTpGenerator {
 			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + players[0] + " " + xCoord + " 150 " + zCoord);
 			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "tp " + players[1] + " " + xCoord + " 150 " + zCoord);
 		}
+		
+		
+		return;
+	}
+	
+	public boolean illegalCoordinates() {
+		
+		return true;
+	}
+	
+	public void tpPlayers(String[][] teamCoords) {
 		
 		
 		return;

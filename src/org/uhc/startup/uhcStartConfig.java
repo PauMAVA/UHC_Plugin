@@ -84,8 +84,9 @@ public class uhcStartConfig implements Listener {
 		Bukkit.getServer().setDefaultGameMode(GameMode.SURVIVAL);
 		if (world.getGameRuleDefault(GameRule.NATURAL_REGENERATION) != false) {
 			world.setGameRule(naturalRegeneration, false);
-		} 
-		world.setGameRule(announceAdvancements, false);
+		} if(world.getGameRuleDefault(GameRule.ANNOUNCE_ADVANCEMENTS) != false) {
+			world.setGameRule(announceAdvancements, false);
+		}
 		world.setDifficulty(difficulty);
 		world.setTime(0);
 		return true;	
